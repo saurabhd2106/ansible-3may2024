@@ -1,0 +1,15 @@
+[webservers]
+webserver ansible_host=server1.abc.com ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=password
+local ansible_host=localhost ansible_connection=local
+web2 ansible_host=10.12.14.12
+
+[dbservers]
+dbserver ansible_host=server1-saur
+
+[loadbalancer]
+lb[1:10:2] ansible_host=lb[1:10].sever.com
+
+
+[frontendservers:children]
+webservers
+loadbalancer

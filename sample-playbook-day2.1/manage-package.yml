@@ -1,0 +1,16 @@
+- name: Manage multiple Server
+  hosts: all
+  become: yes
+  vars:
+    package_name:
+        pkg1: apache2
+        pkg2: php
+  tasks:
+    - name: Install multiple Servers
+      apt:
+        name: "{{ item.value }}"
+        state: present
+        update_cache: true
+      loop: "{{ package_name | dict2items }}"
+
+      

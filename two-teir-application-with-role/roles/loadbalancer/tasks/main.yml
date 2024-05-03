@@ -1,0 +1,21 @@
+- name: Install all apps server
+  apt:
+    name: "{{ apps }}"
+    state: present
+    update_cache: yes
+  become: true
+
+- name: install packages
+  shell:
+    a2enmod ssl
+    a2enmod proxy
+    a2enmod proxy_balancer
+    a2enmod proxy_http
+    a2enmod lbmethod_byrequests
+  args:
+    executable: /bin/bash
+  ignore_errors: yes
+
+- name: Set up Apache virtual host file
+  template: src=vhost.tpl dest=/etc/apache2/sites-available/000-default.conf
+  notify: Restart apache server

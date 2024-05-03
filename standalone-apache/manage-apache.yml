@@ -1,0 +1,35 @@
+- name: Manage Apache Server
+  hosts: local
+  become: yes
+  vars:
+    doc_root: /var/www/example
+  tasks:
+    - name: Update apt 
+      apt: 
+        update_cache: yes
+    
+    - name: Install Apache
+      apt: 
+        name: apache2
+        state: present
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Enable Apache
+      service:
+        name: apache2
+        enabled: true    
+    
+    - name: Create directory
+      file: path={{ doc_root }} state=directory owner=www-data group=www-data
+
+    - name: Copy index.html
+      copy: src=index.html dest={{ doc_root }}/index.html owner=www-data group=www-data
+
+    - name: Setup Apache Virtual host file
+      template: src=vhosts.tpl dest=/etc/apache2/sites-available/000-default.conf
+
+  handlers:
+    - name: restart apache
+      service:
+        name: apache2 
+        state: restarted

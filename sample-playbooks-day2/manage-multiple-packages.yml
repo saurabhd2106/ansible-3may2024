@@ -1,0 +1,16 @@
+- name: Manage multiple Server
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install multiple Servers
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+      loop: "{{ package_name }}"
+    - name: Start apache2 Servers
+      service:
+        name: "{{ package_name[0] }}"
+        state: present
+      
+    

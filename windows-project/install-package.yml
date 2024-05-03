@@ -1,0 +1,18 @@
+- name: Download and install 7-Zip package
+  hosts: ws
+  tasks:
+    - name: Create a new directory
+      ansible.windows.win_file:
+        path: C:\temp\
+        state: directory
+    # Install/uninstall with win_command
+    - name: Download the 7-Zip package
+      win_get_url:
+        url: https://7-zip.org/a/7z2301-x64.exe
+        dest: C:\temp\7z.exe
+    - name: Install a package
+      ansible.windows.win_package:
+          path: C:\temp\7z.exe
+          product_id: 7-Zip
+          arguments: /S
+          state: present

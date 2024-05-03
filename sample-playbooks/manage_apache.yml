@@ -1,0 +1,16 @@
+- name: Manage Apache Server
+  hosts: local
+  become: yes
+  vars:
+    package_name: apache2
+  tasks:
+    - name: Install Apache Server
+      apt:
+        name: "{{ package_name }}"
+        state: present
+        update_cache: true
+    - name: Start Apache Server
+      service:
+        name: "{{ package_name }}"
+        state: started
+        enabled: yes

@@ -1,0 +1,5 @@
+local ansible_host=localhost ansible_connection=local
+web1 ansible_host=54.208.21.247 ansible_connection=ssh ansible_ssh_user=ubuntu ansible_ssh_private_key_file=mykey.pem
+
+[windows_server]
+ws ansible_host=23.22.153.145 ansible_connection=winrm ansible_user=Administrator ansible_password=jThriL4xkvuSHBpeJbGm?qwK@b2*%v4( ansible_winrm_port=5985 ansible_winrm_transport=ntlm

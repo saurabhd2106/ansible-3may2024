@@ -1,0 +1,27 @@
+---
+- name: john
+  employee_id: AC12304
+  phone_number: 
+    - 4938563478
+    - 8746534378
+  address: 
+    - home_address:
+        house_number: 21343
+        pincode: 4235345
+    - office_address:
+        house_number: 456345
+        pincode: 643564
+
+- name: whitney
+  employee_id: ASW34535
+  phone_number: 
+    - 4938563478
+    - 8746534378
+  address: 
+    - home_address:
+        house_number: 21343
+        pincode: 4235345
+    - office_address:
+        house_number: 456345
+        pincode: 643564
+

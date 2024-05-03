@@ -1,0 +1,11 @@
+- name: Setup Webserver
+  hosts: webserver
+  roles:
+    - ../roles/webserver
+  become: true
+
+- name: Setup Load Balancer
+  hosts: loadbalancer
+  roles:
+    - ../roles/loadbalancer
+  become: true
